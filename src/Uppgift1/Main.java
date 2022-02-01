@@ -1,5 +1,6 @@
 package Uppgift1;
 
+import java.util.Comparator;
 import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.Objects;
@@ -70,11 +71,17 @@ public class Main {
         System.out.println("Snittlön för männen: " + doubleSummaryStatistics1.getAverage());
 
         //Upggift 1.2 //
-        DoubleSummaryStatistics doubleSummaryStatistics2 = new DoubleSummaryStatistics();
         persons.stream()
-                .mapToDouble(Person::getSalary)
-                .forEach(doubleSummaryStatistics2);
-        System.out.println(doubleSummaryStatistics2.getMax());
+                .sorted(Comparator.comparing(Person::getSalary).reversed())
+                .limit(1)
+                .forEach(System.out::println);
+
+        //Uppgift 1.3 //
+        persons.stream()
+                .sorted(Comparator.comparing(Person::getSalary))
+                .limit(1)
+                .forEach(System.out::println);
+
 
 
     }
